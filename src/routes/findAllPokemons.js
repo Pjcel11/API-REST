@@ -1,17 +1,36 @@
-const pokemons = require('../db/mock-pokemon')
-const { Pokemon } = require('../db/sequelize')
+const { Pokemon } = require('../db/sequelize') //const pokemons = require('../db/mock-pokemon')
+const { Op} = require('sequelize')
   
 module.exports = (app) => {
   app.get('/api/pokemons', (req, res) => {
     if(req.query.name) {
       const name = req.query.name
-      return Pokemon.findAll({where: {name: name} })
+      const limit = parseInt(req.query.limit) || 5
+      
+    if (name.length <2 ) {
+      const message = `Le terme de recherche doit contenir au moins 2 caractères.`
+      return res.status(400).json({message})
+    } 
+
+      return Pokemon.findAndCountAll({
+        where: {
+          name: {
+            [Op.like]: `%${name}%`
+          }
+        },
+        order: ['name'],
+        limit: limit
+      })
+      .then(({count, rows}) => {
+        const message = `Il y a ${count} pokémons qui correspondent au terme de recherche ${name}.`
+        res.json({message, data: rows})
+      })
       .then(pokemons => {
         const message = `Il y a ${pokemons.length} pokémons qui correspondent au terme de recherce ${name}.`
         res.json({message, data:pokemons})
       })        
     } else {
-      Pokemon.findAll()
+      Pokemon.findAll({order: ['name']})
       .then(pokemons => {
         const message = 'La liste des pokémons a bien été récupérée.'
         res.json({ message, data: pokemons })
