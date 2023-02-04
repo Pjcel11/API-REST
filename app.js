@@ -16,11 +16,11 @@ app
 sequelize.initDb()
 
 //Ici futurs points de terminaison
-require('./src/routes/findAllPokemons.js')(app)
-require('./src/routes/findPokemonByPk.js')(app)
-require('./src/routes/createPokemon.js')(app)
-require('./src/routes/updatePokemon.js')(app)
-require('./src/routes/deletePokemon.js')(app)
+require('./src/routes/findAllPokemons')(app)
+require('./src/routes/findPokemonByPk')(app)
+require('./src/routes/createPokemon')(app)
+require('./src/routes/updatePokemon')(app)
+require('./src/routes/deletePokemon')(app)
 require('./src/routes/login')(app)
 
 //On ajoute la gestion des erreurs
