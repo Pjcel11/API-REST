@@ -4,7 +4,8 @@
   "description": "Backend of MealChoo, an app made to help you managing your food",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon node app.js"
+    "start": "node app.js",
+    "dev": "nodemon node app.js"
   },
   "author": "Pierre-Jean",
   "license": "ISC",
