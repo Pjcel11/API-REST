@@ -1,5 +1,4 @@
 const express = require('express') // on recupere express dans notre code depuis node module
-const morgan = require('morgan')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const sequelize = require('./src/db/sequelize')
@@ -10,7 +9,6 @@ const port = process.env.PORT || 3000
 
 app
     .use(favicon(__dirname+'/favicon.ico'))
-    .use (morgan('dev')) 
     .use(bodyParser.json())   
 
 sequelize.initDb()
