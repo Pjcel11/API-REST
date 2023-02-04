@@ -1,5 +1,4 @@
-const validTypes = ['Plante', 'Poison', 'Feu', 'Eau', 'Insecte', 'Vol', 'Normal', 'Electrik', 'Fée']
-const { ValidationError } = require("sequelize")
+const validTypes = ['Plante', 'Poison', 'Feu', 'Eau', 'Insecte', 'Vol', 'Normal', 'Electrik', 'Fée']//const { ValidationError } = require('sequelize')
 
 module.exports = (sequelize,Datatypes) => {
     return sequelize.define('Pokemon',{ //nom de l(objet) et pour chaque on déf comme on aurait def en sql
