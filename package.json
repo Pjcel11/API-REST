@@ -4,7 +4,7 @@
   "description": "Backend of MealChoo, an app made to help you managing your food",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=developpement nodemon node app.js"
   },
   "author": "Pierre-Jean",
